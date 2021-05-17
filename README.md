@@ -1,7 +1,6 @@
 # copy-keys
 
 Given an Ansible inventory path, execute `ssh-copy-id` to transfer public keys to all hosts in a pattern.
-Read Ansible inventory files using `ansible-inventory`, and execute `ssh-copy-id` against a set of hosts (in parallel).
 
 # motivation
 
