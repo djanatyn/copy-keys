@@ -22,6 +22,12 @@ I decided to use Haskell as an opportunity to:
 * gain more experience scripting in Haskell, and to
 * try [`Polysemy`](https://hackage.haskell.org/package/polysemy), an effect handler system.
 
+# scope
+
+This is just intended for me, I don't imagine anyone else would use this package.
+
+You're probably better off using that shell example above.
+
 # in progress
 
 - [X] execute `ansible-inventory` with `typed-process`
