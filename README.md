@@ -1,6 +1,10 @@
 # copy-keys
 
-Given an Ansible inventory path, execute `ssh-copy-id` to transfer public keys to all hosts in a pattern.
+Given:
+* a path to an Ansible inventory file, and 
+* a pattern,
+
+execute `ssh-copy-id` to transfer public keys to matching hosts.
 
 # motivation
 
@@ -20,6 +24,21 @@ You could also use the `user` module in Ansible, executing directly against the 
 I decided to use Haskell as an opportunity to:
 * gain more experience scripting in Haskell, and to
 * try [`Polysemy`](https://hackage.haskell.org/package/polysemy), an effect handler system.
+
+# usage
+
+``` haskell
+data Hosts pat where
+  Hosts :: KnownSymbol pat => {hosts :: Maybe [Value]} -> Hosts pat
+```
+
+``` haskell
+*CopyKeys> inv <- runM . librarianIO $ readInventory "./example-inventory.yaml"
+*CopyKeys> decode @(Hosts "ExampleGroup") inv
+Just (Hosts {hosts = Just [String "example-host1.com",String "example-host2.com"]})
+*CopyKeys> :t decode @(Hosts "ExampleGroup") inv
+decode @(Hosts "ExampleGroup") inv :: Maybe (Hosts "ExampleGroup")
+```
 
 # scope
 

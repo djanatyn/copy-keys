@@ -41,8 +41,7 @@ data Librarian m a where
 data Hosts pat where
   Hosts :: KnownSymbol pat => {hosts :: Maybe [Value]} -> Hosts pat
 
-instance KnownSymbol pat => Show (Hosts pat) where
-  show (Hosts {hosts}) = "Hosts (" ++ symbolVal (Proxy :: Proxy pat) ++ ") " ++ show hosts
+deriving instance KnownSymbol pat => Show (Hosts pat)
 
 -- | When parsing JSON from ansible-inventory output,
 -- | use the `pat` symbol as a host pattern
